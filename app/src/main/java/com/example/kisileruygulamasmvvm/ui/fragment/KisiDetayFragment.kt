@@ -28,12 +28,13 @@ class KisiDetayFragment : Fragment() {
             val kisiTel= tasarim.editTextKisiTel.text.toString()
 
             guncelle(gelenKisi.kisiId,kisiAd,kisiTel)
+            //guncelle(gelenKisi.kisiId,kisiAd,kisiTel)
         }
 
         return tasarim.root
     }
 
-    fun guncelle(kisiId: String, kisiAd:String, kisiTel:String){
+    fun guncelle(kisiId: Int, kisiAd:String, kisiTel:String){
         Log.e("Kişi Güncelle","$kisiAd-$kisiTel")
     }
 
