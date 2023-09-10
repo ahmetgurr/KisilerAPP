@@ -11,9 +11,13 @@ import com.example.kisileruygulamasmvvm.R
 import com.example.kisileruygulamasmvvm.data.entity.Kisiler
 import com.example.kisileruygulamasmvvm.databinding.CardTasarimBinding
 import com.example.kisileruygulamasmvvm.ui.fragment.AnasayfaFragmentDirections
+import com.example.kisileruygulamasmvvm.util.gecisYap
+import com.example.kisileruygulamasmvvm.viewmodel.AnasayfaViewModel
 import com.google.android.material.snackbar.Snackbar
 
-class KisilerAdapter(var mContext: Context, var kisilerListesi:List<Kisiler>)
+class KisilerAdapter(var mContext: Context,
+                     var kisilerListesi:List<Kisiler>,
+                     var viewModel: AnasayfaViewModel)
     : RecyclerView.Adapter<KisilerAdapter.CardTasarimTutucu>() {
 
     inner class CardTasarimTutucu(tasarim: CardTasarimBinding) : RecyclerView.ViewHolder(tasarim.root){
@@ -43,12 +47,13 @@ class KisilerAdapter(var mContext: Context, var kisilerListesi:List<Kisiler>)
 
         t.satirCard.setOnClickListener {
             val gecis = AnasayfaFragmentDirections.kisiDetayGecis(kisi = kisi)
-            Navigation.findNavController(it).navigate(gecis)
+            Navigation.gecisYap(it,gecis)
         }
         t.imageViewSil.setOnClickListener {
             Snackbar.make(it,"${kisi.kisiAd} silinsin mi?",Snackbar.LENGTH_LONG)
                 .setAction("EVET"){
-                    Log.e("Kişi Sil",kisi.kisiId.toString())
+                    //Log.e("Kişi Sil",kisi.kisiId.toString()) buraya da gerek aklamdı ciewmodel sil i ekledik
+                    viewModel.sil(kisi.kisiId)
                 }.show()
         }
 
