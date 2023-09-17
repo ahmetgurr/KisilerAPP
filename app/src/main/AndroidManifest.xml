@@ -2,16 +2,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
     <application
+        android:allowClearUserData="true"
+        android:name=".di.HiltApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/phone5"
+        android:icon="@drawable/kisiler"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/phone5"
+        android:roundIcon="@drawable/kisiler"
         android:supportsRtl="true"
         android:theme="@style/Theme.KisilerUygulamasıMvvm"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        tools:ignore="MissingClass">
         <activity
             android:name=".MainActivity"
             android:exported="true">

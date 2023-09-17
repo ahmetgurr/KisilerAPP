@@ -6,23 +6,29 @@ import androidx.lifecycle.ViewModel
 import com.example.kisileruygulamasmvvm.data.entity.Kisiler
 import com.example.kisileruygulamasmvvm.data.repo.KisilerDaRepostory
 
-class AnasayfaViewModel: ViewModel() {
-    val krepo =  KisilerDaRepostory()
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+
+
+@HiltViewModel
+class AnasayfaViewModel @Inject constructor(var krepo : KisilerDaRepostory) : ViewModel() {
     var kisilerListesi = MutableLiveData<List<Kisiler>>()
 
     init {
         kisileriYukle()
         kisilerListesi = krepo.kisileriGetir()
     }
+
     fun ara(aramaKelimesi:String){
-       krepo.kisiAra(aramaKelimesi)
+        krepo.kisiAra(aramaKelimesi)
     }
+
     fun sil(kisiId: Int){
         krepo.kisiSil(kisiId)
     }
+
     fun kisileriYukle(){
         krepo.tumKisileriAl()
     }
-
 
 }

@@ -10,11 +10,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.kisileruygulamasmvvm.R
-import com.example.kisileruygulamasmvvm.databinding.FragmentAnasayfaBinding
 import com.example.kisileruygulamasmvvm.databinding.FragmentKisiDetayBinding
-import com.example.kisileruygulamasmvvm.viewmodel.KisiDetayViewModel
-import com.example.kisileruygulamasmvvm.viewmodel.KisiKayitViewModel
 
+import com.example.kisileruygulamasmvvm.viewmodel.KisiDetayViewModel
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 class KisiDetayFragment : Fragment() {
     private lateinit var tasarim: FragmentKisiDetayBinding
     private lateinit var viewModel: KisiDetayViewModel
@@ -29,31 +30,17 @@ class KisiDetayFragment : Fragment() {
         val gelenKisi = bundle.kisi
         tasarim.kisiNesnesi = gelenKisi
 
-        /*
-       //burayı da yukarıda gelen kısı ile aldık
-       tasarim.editTextKisiAd.setText(gelenKisi.kisiAd)
-        tasarim.editTextKisiTel.setText(gelenKisi.kisiTel)
-
-        //buradaki tıklanma ozelligi yerıne viewDataBinding kullandık kaldırdık
-        tasarim.buttonGuncelle.setOnClickListener{
-            val kisiAd = tasarim.editTextKisiAd.text.toString()
-            val kisiTel= tasarim.editTextKisiTel.text.toString()
-
-            buttonGuncelle(gelenKisi.kisiId,kisiAd,kisiTel)
-            //guncelle(gelenKisi.kisiId,kisiAd,kisiTel)
-        }
-         */
-
         return tasarim.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val tempViewModel: KisiDetayViewModel by viewModels ()
+        val tempViewModel : KisiDetayViewModel by viewModels ()
         viewModel = tempViewModel
     }
+
     fun buttonGuncelle(kisiId: Int, kisiAd: String, kisiTel: String) {
-        viewModel.kisiGuncelle(kisiId,kisiAd,kisiTel)
+        viewModel.guncelle(kisiId,kisiAd,kisiTel)
     }
 
 }

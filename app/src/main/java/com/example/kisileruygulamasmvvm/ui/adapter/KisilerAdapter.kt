@@ -17,7 +17,8 @@ import com.google.android.material.snackbar.Snackbar
 
 class KisilerAdapter(var mContext: Context,
                      var kisilerListesi:List<Kisiler>,
-                     var viewModel: AnasayfaViewModel)
+                     var viewModel: AnasayfaViewModel
+)
     : RecyclerView.Adapter<KisilerAdapter.CardTasarimTutucu>() {
 
     inner class CardTasarimTutucu(tasarim: CardTasarimBinding) : RecyclerView.ViewHolder(tasarim.root){
@@ -50,10 +51,9 @@ class KisilerAdapter(var mContext: Context,
             Navigation.gecisYap(it,gecis)
         }
         t.imageViewSil.setOnClickListener {
-            Snackbar.make(it,"${kisi.kisiAd} silinsin mi?",Snackbar.LENGTH_LONG)
+            Snackbar.make(it,"${kisi.kisi_ad} silinsin mi?",Snackbar.LENGTH_LONG)
                 .setAction("EVET"){
-                    //Log.e("Kişi Sil",kisi.kisiId.toString()) buraya da gerek aklamdı ciewmodel sil i ekledik
-                    viewModel.sil(kisi.kisiId)
+                    viewModel.sil(kisi.kisi_id)
                 }.show()
         }
 

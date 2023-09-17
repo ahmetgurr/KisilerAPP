@@ -2,13 +2,15 @@ package com.example.kisileruygulamasmvvm.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.example.kisileruygulamasmvvm.data.entity.Kisiler
 import com.example.kisileruygulamasmvvm.data.repo.KisilerDaRepostory
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class KisiKayitViewModel: ViewModel() {
-    val krepo =  KisilerDaRepostory()
+@HiltViewModel
+class KisiKayitViewModel @Inject constructor(var krepo : KisilerDaRepostory): ViewModel() {
 
     fun kayit(kisiAd:String, kisiTel:String){
-        //Log.e("Kişi Kayıt","$kisiAd - $kisiTel")
         krepo.kisiKayit(kisiAd,kisiTel)
     }
 }
